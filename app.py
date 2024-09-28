@@ -23,7 +23,6 @@ st.set_page_config(
     layout="centered"
 )
 
-
 def read_data(file):
     if file.name.endswith(".csv"):
         return pd.read_csv(file)
