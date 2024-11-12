@@ -36,12 +36,17 @@ def get_vector_store(chunks):
         model="models/embedding-001")  
     vector_store = FAISS.from_texts(chunks, embedding=embeddings)
     vector_store.save_local("faiss_index")
+# Answer the question as detailed as possible from the provided context, make sure to provide all the details, if the answer is not in
+#     provided context just say, "answer is not available in the context", don't provide the wrong answer\n\n
 
+# Answer the question as detailed as possible from the provided context, make sure to provide all the details. Try to look for details
+#     about the question in the pdf. If question is related to the pdf, then find answer from anywhere and if not related to pdf
+#     then just say out of domain\n\n
 
 def get_conversational_chain():
     prompt_template = """
-    Answer the question as detailed as possible from the provided context, make sure to provide all the details, if the answer is not in
-    provided context just say, "answer is not available in the context", don't provide the wrong answer\n\n
+    I will provide pdf. your task is to generate 300 mcqs from it as well as the answer. it should be in the pdf format. 
+    generate either in sets or all at once. many questions should not be same.
     Context:\n {context}?\n
     Question: \n{question}\n
 
